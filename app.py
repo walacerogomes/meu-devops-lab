@@ -1,5 +1,5 @@
 from flask import Flask
-import biblioteca_que_nao_existe # LINHA QUE CAUSA O ERRO
+import biblioteca_que_nao_existe
 
 app = Flask(__name__)
 
