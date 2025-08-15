@@ -17,6 +17,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # NOVO PASSO: Adiciona o scanner de vulnerabilidades
+      - name: Analise de Vulnerabilidades com Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'meu-app-flask:latest' # NOME DA IMAGEM
+          format: 'table'
+          exit-code: '1' # Falha o pipeline se encontrar vulnerabilidades
+          ignore-unfixed: true
+
       - name: Build e Push da imagem
         uses: docker/build-push-action@v4
         with:
